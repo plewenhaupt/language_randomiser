@@ -8,7 +8,6 @@ What I want to do is:
 
 
 =#
-
 #################
 #   ATTRIBUTES  #
 #################
@@ -24,7 +23,7 @@ verb_mood = ["l'indicatif", "subjonctif", "l'impératif", "le conditionnel"]
 verb_tense = ["présent", "imparfait", "passé simple", "passé composé", "futur simple", "plus-que-parfait", "passé antérieur", "futur antérieur", "subjonctif présent", "subjonctif passé", "subjonctif imparfait", "subjonctif plus-que-parfait", "conditionnel présent", "conditionnel passé", "conditionnel passé 2", "l'impératif présent", "l'impératif passé"]
 
 # Generator
-noun_count = 4 #rand(1:5)
+noun_count = rand(1:5)
 verb_count = rand(1:ifelse(noun_count == 1, 1, noun_count-1))
 sentence_instructions = "Please construct a sentence with " * string(noun_count) * ifelse(noun_count == 1, " noun and ", " nouns and ") * string(verb_count) * ifelse(verb_count == 1, " verb.", " verbs.")
 
@@ -36,7 +35,7 @@ for c in 1:noun_count
     push!(noun_instructions, instruction)
 end
 
-verb_variables = [verb_group, verb_mood, verb_tense]
+verb_variables = [verb_group, verb_tense]
 verb_instructions = []
 for c in 1:verb_count
     attributes = [rand(x) for x in verb_variables]
@@ -45,9 +44,10 @@ for c in 1:verb_count
 end
 
 println(sentence_instructions)
-println(join(noun_instructions, ", "))
-println(join(verb_instructions, ", "))
-instructions = [sentence_instructions, noun_instructions, verb_instructions]
+for n in noun_instructions
+    println(n)
+end
+for n in verb_instructions
+    println(n)
+end
 
-# What do I want to final instructions to look like?
-# Challenge: Please construct a sentence...
